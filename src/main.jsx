@@ -8,9 +8,11 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import Users from './Pages/Users';
 import App from './App'
+import {Provider} from 'react-redux'
+import store from './Store/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <Provider store={store}>
     <BrowserRouter>
       <div>
         {/* Navigation is placed in its own section */}
@@ -26,5 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </div>
       </div>
     </BrowserRouter>
-  </React.StrictMode>
+  </Provider>
 );
