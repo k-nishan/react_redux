@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUsers } from "../Slices/userSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const [formInput, setFormInput] = useState({
     userName: "",
     age: "",
@@ -16,7 +19,16 @@ const Home = () => {
         [name]: value,
       };
     });
-    console.log(name, value);
+  };
+
+  const addUsers = (event) => {
+    /* after form submit form will refresh as default
+      if the form is refreshed the store data will be erased
+      so need to restrict the default behaviour of the form */
+    event.preventDefault(); 
+    /* dispatching the action from user slice 
+       the formInput will set to the action.payload */
+    dispatch(setUsers(formInput));
   };
   return (
     <div>
@@ -57,7 +69,7 @@ const Home = () => {
           onChange={handleChange}
         />
         <br />
-        <button>Add</button>
+        <button onClick={addUsers}>Add</button>
       </form>
     </div>
   );
